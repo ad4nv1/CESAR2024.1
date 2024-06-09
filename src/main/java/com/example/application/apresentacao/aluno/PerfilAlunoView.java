@@ -49,14 +49,14 @@ public class PerfilAlunoView extends VerticalLayout {
         VerticalLayout eletivasLayout = new VerticalLayout();
         eletivasLayout.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 
-        List<Eletivas> eletivasList = alunoRepository.findEletivasByAlunoId(aluno.getId());
-        if (eletivasList != null && !eletivasList.isEmpty()) {
-            for (Eletivas eletiva : eletivasList) {
-                TextField eletivaField = new TextField("Eletiva: " + eletiva.getNome());
-                eletivaField.setValue(eletiva.getDescricao());
-                eletivaField.setReadOnly(true);
-                eletivasLayout.add(eletivaField);
-            }
+        Eletivas eletiva = alunoRepository.findEletivaByAlunoId(aluno.getId());
+        if (eletiva != null) {
+
+            TextField eletivaField = new TextField("Eletiva: " + eletiva.getNome());
+            eletivaField.setValue(eletiva.getDescricao());
+            eletivaField.setReadOnly(true);
+            eletivasLayout.add(eletivaField);
+
         }
 
         Image fotoAluno = new Image("images/perfil.png", "Foto do Aluno");

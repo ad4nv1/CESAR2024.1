@@ -18,7 +18,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
     Aluno findByEmail(String nomeUsuario);
 
-    @Query("SELECT a.eletivas FROM Aluno a WHERE a.id = :alunoId")
-    List<Eletivas> findEletivasByAlunoId(@Param("alunoId") Long alunoId);
+    @Query("SELECT a.eletiva FROM Aluno a WHERE a.id = :alunoId")
+    Eletivas findEletivaByAlunoId(@Param("alunoId") Long alunoId);
 }
 

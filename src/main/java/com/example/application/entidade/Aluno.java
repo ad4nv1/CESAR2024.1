@@ -1,10 +1,7 @@
 package com.example.application.entidade;
 
 import com.vaadin.flow.component.textfield.TextField;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.util.ArrayList;
@@ -33,13 +30,9 @@ public class Aluno extends AbstractEntity {
     @NotEmpty
     private String senha = " ";
 
-    @ManyToMany
-    @JoinTable(
-            name = "aluno_eletiva",
-            joinColumns = @JoinColumn(name = "aluno_id"),
-            inverseJoinColumns = @JoinColumn(name = "eletiva_id")
-    )
-    private List<Eletivas> eletivas = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "eletiva_id")
+    private Eletivas eletiva;
 
     public Aluno() {
         this.matricula = matricula;
@@ -98,11 +91,11 @@ public class Aluno extends AbstractEntity {
         this.senha = senha;
     }
 
-    public List<Eletivas> getEletivas() {
-        return eletivas;
+    public Eletivas getEletiva() {
+        return eletiva;
     }
 
-    public void setEletivas(List<Eletivas> eletivas) {
-        this.eletivas = eletivas;
+    public void setEletiva(Eletivas eletiva) {
+        this.eletiva = eletiva;
     }
 }

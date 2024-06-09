@@ -3,6 +3,7 @@ package com.example.application.entidade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Eletivas  extends AbstractEntity{
 
     private int vagasDisponiveis;
 
-    @ManyToMany(mappedBy = "eletivas")
+    @OneToMany(mappedBy = "eletiva")
     private List<Aluno> alunos = new ArrayList<>();
 
     public String getNome() {
